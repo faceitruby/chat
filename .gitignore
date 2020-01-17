@@ -12,9 +12,16 @@
 
 # Used by dotenv library to load environment variables.
 # .env
-
+# Ignore bundler config.
+/.bundle
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
 
 ## Specific to RubyMotion:
 .dat*
@@ -49,8 +56,27 @@ build-iPhoneSimulator/
 # .ruby-version
 # .ruby-gemset
 
+# Ignore uploaded files in development.
+/storage/*
+!/storage/.keep
+
+/public/assets
+.byebug_history
+
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
 
 # Used by RuboCop. Remote config files pulled in from inherit_from directive.
 # .rubocop-https?--*
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+/config/initializers/app_env_vars.rb
