@@ -1,2 +1,24 @@
-%h1 HomePages#index
-%p Find me in app/views/home_pages/index.html.haml
+.container-fluid
+  .row.col-4.my-3
+    .dropdown
+      %button.btn.btn-secondary.dropdown-toggle#dropdownMenuButton{type: 'button', 'data-toggle': 'dropdown'} User
+      .dropdown-menu{'aria-labelledby': 'dropdownMenuButton'}
+        = link_to 'Profile', persons_profile_path, class: 'dropdown-item'
+  .row.col-4
+    %ul.nav.nav-tabs
+      %li.nav-item
+        %a.nav-link{href: '#contacts_tab', 'data-toggle': 'tab'} Contacts
+      %li.nav-item.active
+        %a.nav-link{href: '#chat_tab', 'data-toggle': 'tab'} Chats
+  .row.col-4.m-5
+    .tab-content.clearfix
+      #contacts_tab.tab-pane
+        = render 'home_pages/partials/contact_tab'
+      #chat_tab.tab-pane.active
+        = render 'home_pages/partials/chat_tab'
+
+  .row.col-8
+    .chat_window
+      .chat_menu
+      .chat_messages.bg-secondary
+      .chat_write_box
