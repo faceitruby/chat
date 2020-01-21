@@ -52,7 +52,9 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'bootstrap-sass'
+gem 'bootstrap'
+
+gem 'haml-rails', '~> 2.0'
 
 gem 'devise'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
