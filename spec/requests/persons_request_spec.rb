@@ -8,5 +8,4 @@ RSpec.describe "Persons", type: :request do
       expect(response).to have_http_status(:success)
     end
   end
-
 end
