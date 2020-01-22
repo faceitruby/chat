@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'messages/create'
   get 'home_pages/index'
   devise_for :users
   get 'persons/profile'
