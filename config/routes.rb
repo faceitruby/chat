@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'chat_rooms/create'
+  get 'chat_members/create'
   get 'messages/create'
   get 'home_pages/index'
   devise_for :users
