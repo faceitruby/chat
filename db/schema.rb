@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2020_01_21_095317) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +17,7 @@ ActiveRecord::Schema.define(version: 2020_01_21_095317) do
   create_table "chat_members", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "chat_room_id", null: false
+    t.string "member_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["chat_room_id"], name: "index_chat_members_on_chat_room_id"
@@ -25,20 +25,18 @@ ActiveRecord::Schema.define(version: 2020_01_21_095317) do
   end
 
   create_table "chat_rooms", force: :cascade do |t|
-    t.boolean "type", default: false
+    t.boolean "chat_type"
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "messages", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "chat_rooms_id", null: false
-    t.text "message_text"
+    t.text "message"
+    t.bigint "chat_member_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["chat_rooms_id"], name: "index_messages_on_chat_rooms_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
+    t.index ["chat_member_id"], name: "index_messages_on_chat_member_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -61,6 +59,5 @@ ActiveRecord::Schema.define(version: 2020_01_21_095317) do
 
   add_foreign_key "chat_members", "chat_rooms"
   add_foreign_key "chat_members", "users"
-  add_foreign_key "messages", "chat_rooms", column: "chat_rooms_id"
-  add_foreign_key "messages", "users"
+  add_foreign_key "messages", "chat_members"
 end
