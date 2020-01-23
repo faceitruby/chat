@@ -57,5 +57,6 @@ gem 'bootstrap'
 gem 'haml-rails', '~> 2.0'
 
 gem 'devise'
+gem 'omniauth-google-oauth2'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

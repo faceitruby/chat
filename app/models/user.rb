@@ -6,7 +6,31 @@ class User < ApplicationRecord
          :recoverable,
          :rememberable,
          :validatable,
-         :confirmable
+         :confirmable,
+         :omniauthable,
+         :omniauth_providers => [:google_oauth2]
+
+  def self.from_omniauth(access_token)
+    data = access_token
+    user = User.where(email: data['info']['email']).first
+
+     unless user
+         user = User.create(
+            provider: data['provider'],
+            uid: data['uid'],
+            email: data['info']['email'],
+            first_name: data['info']['first_name'],
+            last_name: data['info']['last_name'],
+            # avatar: data['info']['image'],
+            token: data['credentials']['token'],
+            refresh_token: data['credentials']['refresh_token'],
+            expires_at: data['credentials']['expires_at'],
+            expires: data['credentials']['expires'],
+            password: Devise.friendly_token(length = 20)
+         )
+     end
+    user
+  end
 
   validates :first_name, :last_name, :email, presence: true, on: :create
   validates :email, uniqueness: true
