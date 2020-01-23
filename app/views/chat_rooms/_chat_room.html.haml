@@ -1,8 +1,8 @@
 .chat
   - if chat_room.title
-    = chat_room.title
+    = link_to chat_room.title, chat_room
   - else
-    Untitled
+    = link_to 'Untitled', chat_room
   - if chat_room.chat_type
     public
   - else
