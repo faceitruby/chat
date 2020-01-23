@@ -4,19 +4,7 @@
       f.text :
     %p chats search
   .create_chats
-    %h2 Create chat
-    = form_with(model: [ @new_chat_room ], local: true) do |form|
-      %p
-        = form.label :chat_type
-        %br/
-        = form.check_box :chat_type
-        public
-      %p
-        = form.label :title
-        %br/
-        = form.text_field :title
-      %p
-        = form.submit
+    = render 'chat_rooms/create_chat_room', post: @new_chat_room
 .row.col-4
   .chats_list
     = render @chat_list
