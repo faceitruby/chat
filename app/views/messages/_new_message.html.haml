@@ -1,0 +1,7 @@
+= form_with(model: [ chat_room, new_message ], local: true) do |form|
+  %p
+    = form.label :message
+    %br/
+    = form.text_area :chat_type
+  %p
+    = form.submit
