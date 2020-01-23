@@ -4,7 +4,8 @@ class ChatRoomsController < ApplicationController
   end
 
   def create
-    ChatRoom.create!(chat_room_params)
+    chat_room = ChatRoom.create!(chat_room_params)
+    chat_room.chat_members.create(user: current_user, member_type: 'owner')
     redirect_to root_path
   end
 

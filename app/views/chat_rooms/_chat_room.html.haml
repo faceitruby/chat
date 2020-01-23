@@ -1,0 +1,9 @@
+.chat
+  - if chat_room.title
+    = chat_room.title
+  - else
+    Untitled
+  - if chat_room.chat_type
+    public
+  - else
+    private

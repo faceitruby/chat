@@ -3,6 +3,20 @@
     = form_with url: '#' do |f|
       f.text :
     %p chats search
+  .create_chats
+    %h2 Create chat
+    = form_with(model: [ @new_chat_room ], local: true) do |form|
+      %p
+        = form.label :chat_type
+        %br/
+        = form.check_box :chat_type
+        public
+      %p
+        = form.label :title
+        %br/
+        = form.text_field :title
+      %p
+        = form.submit
 .row.col-4
   .chats_list
-    %p chats list
+    = render @chat_list
