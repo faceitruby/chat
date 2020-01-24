@@ -1,6 +1,18 @@
 div.full_height {
   height: 100vh;
 }
-.nav-link.active {
-  background-color: lightseagreen;
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+  background-color: #d0f9ff;
+}
+.chat_window {
+  height: 100vh;
+}
+.chat_header {
+  height: 5vh;
+}
+.chat_messages {
+  height: 80vh;
+}
+.chat_footer {
+  height: 15vh;
 }
