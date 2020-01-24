@@ -1,0 +1,8 @@
+- message.each do |message|
+  - message.messages.each do |msg|
+    .message
+      .author
+        = chat_member_to_name(msg.chat_member)
+      .message
+        = msg.message
+      
