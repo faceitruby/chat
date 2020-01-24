@@ -1,2 +1,3 @@
 = render 'messages/messages', message: @chat_messages
-= render 'messages/new_message', new_message: @new_message, chat_room: @chat_room
+- if @chat_room
+  = render 'messages/new_message', new_message: @new_message, chat_room: @chat_room

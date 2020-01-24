@@ -1,13 +1,15 @@
 class ChatRoomsController < ApplicationController
+  before_action :chat_room, only: %i[show]
 
   def show
-    @new_chat_room = ChatRoom.new
-    @new_message = Message.new
-
     @chat_list = ChatMember.where(user: current_user).map { |chat_member| chat_member.chat_room }
-    @chat_room = ChatRoom.find(params[:id])
     @chat_members = ChatMember.where(chat_room: @chat_room)
-    @chat_messages = @chat_members.each { |chat_member| Message.where(chat_member: chat_member) }
+    @chat_messages = @chat_room.messages
+  end
+
+  def index
+    @chat_list = ChatMember.where(user: current_user).map { |chat_member| chat_member.chat_room }
+    @chat_members = ChatMember.where(chat_room: @chat_room)
   end
 
   def new
@@ -24,5 +26,9 @@ class ChatRoomsController < ApplicationController
 
   def chat_room_params
     params.require(:chat_room).permit(:title, :chat_type)
+  end
+
+  def chat_room
+    @chat_room = ChatRoom.find(params[:id])
   end
 end

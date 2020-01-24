@@ -1,5 +1,5 @@
 %h2 Create chat
-= form_with(model: [ @new_chat_room ], local: true) do |form|
+= form_with(model: [ ChatRoom.new ], local: true) do |form|
   %p
     = form.label :chat_type
     %br/
