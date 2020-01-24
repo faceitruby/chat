@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  before_save :set_default_avatar
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
@@ -21,7 +23,7 @@ class User < ApplicationRecord
             email: data['info']['email'],
             first_name: data['info']['first_name'],
             last_name: data['info']['last_name'],
-            # avatar: data['info']['image'],
+            remote_avatar_url: data['info']['image'],
             token: data['credentials']['token'],
             refresh_token: data['credentials']['refresh_token'],
             expires_at: data['credentials']['expires_at'],
@@ -30,6 +32,14 @@ class User < ApplicationRecord
          )
      end
     user
+  end
+
+  mount_uploader :avatar, AvatarUploader
+
+  def set_default_avatar
+    self.avatar = File.open(
+        "#{Rails.root}/app/assets/images/avatars/noavatar.png"
+    ) if avatar.blank?
   end
 
   validates :first_name, :last_name, :email, presence: true, on: :create
