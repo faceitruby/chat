@@ -1,15 +1,10 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the MessagesHelper. For example:
-#
-# describe MessagesHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe MessagesHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let!(:user) { create(:valid_user) }
+  let!(:chat_room) { create(:public_chat) }
+  let!(:chat_member) { create(:member_member, user_id: user.id, chat_room_id: chat_room.id) }
+  it 'return user name' do
+    expect(helper.chat_member_to_name(user)).to eq('James Bond')
+  end
 end

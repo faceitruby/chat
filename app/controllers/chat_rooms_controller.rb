@@ -1,14 +1,15 @@
 class ChatRoomsController < ApplicationController
+  before_action :check_user, only: %i[show index]
+  before_action :chat_room, only: %i[show]
+  before_action :chat_list, only: %i[show index]
 
   def show
-    @new_chat_room = ChatRoom.new
-    @new_message = Message.new
+    @chat_members = @chat_room.chat_members
+    @chat_messages = @chat_room.messages.order('created_at ASC')
+  end
 
-    @chat_list = ChatMember.where(user: current_user).map { |chat_member| chat_member.chat_room }
-    @chat_room = ChatRoom.find(params[:id])
+  def index
     @chat_members = ChatMember.where(chat_room: @chat_room)
-    # @chat_messages = @chat_members.find { |chat_member| Message.where(chat_member: chat_member) }
-
   end
 
   def new
@@ -16,14 +17,28 @@ class ChatRoomsController < ApplicationController
   end
 
   def create
-    chat_room = ChatRoom.create!(chat_room_params)
+    return unless user_signed_in?
+
+    chat_room = ChatRoom.create(chat_room_params)
     chat_room.chat_members.create(user: current_user, member_type: 'owner')
-    redirect_to root_path
+    redirect_back(fallback_location: root_path)
   end
 
   private
 
+  def check_user
+    redirect_to new_user_session_path unless user_signed_in?
+  end
+
   def chat_room_params
     params.require(:chat_room).permit(:title, :chat_type)
+  end
+
+  def chat_room
+    @chat_room = ChatRoom.find(params[:id])
+  end
+
+  def chat_list
+    @chat_list = ChatMember.where(user: current_user).map { |chat_member| chat_member.chat_room }
   end
 end
