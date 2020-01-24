@@ -17,3 +17,8 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 import "bootstrap";
 import "../stylesheets/application.css"
+// for adding font-awesome
+import { library, dom } from "@fortawesome/fontawesome-svg-core";
+import { fas } from '@fortawesome/free-solid-svg-icons'
+library.add(fas);
+dom.watch();

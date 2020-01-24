@@ -1,0 +1,8 @@
+-# TODO: REPLACE WITH CORRECT LOGIC
+- messages_sample = { 1 => 'message1', 2 => 'message2', 3 => 'message3' }
+- messages_sample.each do |key, value|
+  - case key
+  - when 2
+    %p.text-right= value
+  - else
+    %p.text-left= value

@@ -1,6 +1,6 @@
-.row.col-4
-  .search_chats
-    %p contacts search
-.row.col-4
-  .chats_list
-    %p contacts list
+.search_chats.d-flex
+  = form_with url: '#' do |form|
+    = form.text_field :chat_search, type: 'search', placeholder: 'Search contact', class: 'mr-4 w-100'
+  = link_to raw('<i class="fas fa-search fa-2x"></i>'), '#', class: 'ml-2'
+.chats_list
+  %p contacts list
