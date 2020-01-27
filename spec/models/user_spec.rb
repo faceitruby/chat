@@ -6,6 +6,7 @@ RSpec.describe User, type: :model do
       id created_at updated_at email encrypted_password reset_password_token
       remember_created_at reset_password_sent_at unconfirmed_email
       last_name first_name confirmation_token confirmed_at confirmation_sent_at
+      provider uid token expires_at expires refresh_token avatar
     ].each do |field|
       it { is_expected.to have_db_column(field) }
     end
@@ -67,6 +68,46 @@ RSpec.describe User, type: :model do
       it "has string key #{item}" do
         expect(hash.keys).to be_include("#{item}")
       end
+    end
+  end
+
+  describe AvatarUploader do
+    include CarrierWave::Test::Matchers
+
+    let(:user) { User.new }
+    let(:uploader) { AvatarUploader.new(user, :avatar) }
+
+    before do
+      AvatarUploader.enable_processing = true
+      File.open("#{Rails.root}/app/assets/images/avatars/noavatar.png") { |f| uploader.store!(f) }
+    end
+
+    after do
+      AvatarUploader.enable_processing = false
+      uploader.remove!
+    end
+
+    context 'the small version' do
+      it "scales down a landscape image to be exactly 150 by 150 pixels" do
+        expect(uploader.small).to have_dimensions(150, 150)
+      end
+    end
+
+    context 'the normal version' do
+      it "scales down a landscape image to be exactly 300 by 300 pixels" do
+        expect(uploader.normal).to have_dimensions(300, 300)
+      end
+    end
+
+    it "has the correct format" do
+      expect(uploader).to be_format('png')
+    end
+  end
+
+  describe '#valid' do
+    let!(:user) { create(:valid_user) }
+    it "valid with valid attributes" do
+      expect(user).to be_valid
     end
   end
 end

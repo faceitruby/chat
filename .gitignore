@@ -81,3 +81,4 @@ yarn-debug.log*
 
 /config/initializers/app_env_vars.rb
 README.md
+/public/uploads
