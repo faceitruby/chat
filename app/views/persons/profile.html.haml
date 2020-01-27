@@ -1,2 +1,5 @@
 %h1 Persons#profile
 %p Find me in app/views/persons/profile.html.erb
+- if current_user
+  = link_to 'Log_out', destroy_user_session_path, method: :delete, id: 'logout'
+  = current_user.id
