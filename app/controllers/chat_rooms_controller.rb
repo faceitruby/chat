@@ -3,8 +3,8 @@ class ChatRoomsController < ApplicationController
   before_action :chat_list, only: %i[show index]
 
   def show
-    @chat_members = ChatMember.where(chat_room: @chat_room)
-    @chat_messages = @chat_room.messages
+    @chat_members = @chat_room.chat_members
+    @chat_messages = @chat_room.messages.order('created_at ASC')
   end
 
   def index
