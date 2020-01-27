@@ -1,10 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe ChatMembersController, type: :request do
+RSpec.describe ChatMembersController, type: :controller do
   describe 'post /create' do
-    it 'returns http success' do
-      post :create, params: { chat_member: { chat_room: 1, member_type: 'member' } }
-      expect(response).to have_http_status(:success)
+    let!(:user) { create(:valid_user) }
+    let(:chat_room) { create(:public_chat) }
+
+    xit 'returns http redirect' do
+      sign_in user
+      post :create, params: { chat_member: { chat_room: chat_room, member_type: 'member' } }
+      expect(response).to have_http_status(:redirect)
     end
   end
 
