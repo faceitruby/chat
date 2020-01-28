@@ -1,0 +1,7 @@
+- if message
+  - message.each do |message|
+    .message
+      .author
+        = chat_member_to_name message.chat_member
+      .text
+        = message.message

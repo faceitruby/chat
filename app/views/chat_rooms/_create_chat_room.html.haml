@@ -1,0 +1,13 @@
+%h2 Create chat
+= form_with(model: [ ChatRoom.new ], local: true) do |form|
+  %p
+    = form.label :chat_type
+    %br/
+    = form.check_box :chat_type
+    public
+  %p
+    = form.label :title
+    %br/
+    = form.text_field :title
+  %p
+    = form.submit
