@@ -16,3 +16,14 @@ div.full_height {
 .chat_footer {
   height: 15vh;
 }
+#contact_search_result {
+  overflow: auto;
+  height: 30vh;
+}
+.contact:hover {
+  background-color: #BBBBBB;
+}
+.chats_list {
+  overflow: auto;
+  max-height: 30vh;
+}
