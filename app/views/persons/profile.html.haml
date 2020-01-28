@@ -1,2 +1,22 @@
 %h1 Persons#profile
 %p Find me in app/views/persons/profile.html.erb
+%p !!!!!!!!!!!!
+
+.content-profile
+  .header-area
+    = @user.first_name + ' ' + @user.last_name +  ' profile'
+  .avatar-area
+    = image_tag @user.avatar.normal.url
+  .user-info-area
+    User email:
+    = @user.email
+    %br
+    User first name:
+    = @user.first_name
+    %br
+    User last name:
+    = @user.last_name
+
+= link_to t('menu.logout'), destroy_user_session_path, method: :delete, id: 'logout'
+
+= button_tag '123', class: 'btn btn-info btn-lg'
