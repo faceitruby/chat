@@ -1,6 +1,8 @@
 %h1 Persons#profile
 %p Find me in app/views/persons/profile.html.erb
-%p !!!!!!!!!!!!
+- if current_user
+  = link_to 'Log_out', destroy_user_session_path, method: :delete, id: 'logout'
+  = current_user.id
 
 .content-profile
   .header-area
@@ -17,6 +19,3 @@
     User last name:
     = @user.last_name
 
-= link_to t('menu.logout'), destroy_user_session_path, method: :delete, id: 'logout'
-
-= button_tag '123', class: 'btn btn-info btn-lg'
