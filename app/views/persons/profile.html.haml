@@ -1,5 +1,29 @@
-%h1 Persons#profile
-%p Find me in app/views/persons/profile.html.erb
+-#TODO: do modal window
+
 - if current_user
   = link_to 'Log_out', destroy_user_session_path, method: :delete, id: 'logout'
-  = current_user.id
+  -# = current_user.id
+
+
+
+.content-profile
+  .header-area
+    %h2
+      = @user.first_name + ' ' + @user.last_name + ' profile'
+  %br/
+  .avatar-area
+    = image_tag @user.avatar.normal.url
+  %br
+  .user-info-area
+    %h4
+      User email:
+      = @user.email
+    %h4
+      User first name:
+      = @user.first_name
+    %h4
+      User last name:
+      = @user.last_name
+    = link_to 'Edit', edit_user_registration_path
+
+

@@ -44,8 +44,8 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, :email, presence: true, on: :create
   validates :email, uniqueness: true
-  validates :password, length: { minimum: 6 }
-  validates :password, presence: true
+  validates :password, length: { minimum: 6 }, on: :create
+  validates :password, presence: true, on: :create
 
   has_many :chat_members, dependent: :destroy
 
