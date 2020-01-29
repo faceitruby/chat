@@ -47,6 +47,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 
   config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :helper
   config.include Devise::Test::ControllerHelpers, type: :view
 end
 
@@ -55,8 +56,4 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
-end
-
-RSpec.configure do |config|
-  config.infer_spec_type_from_file_location!
 end
