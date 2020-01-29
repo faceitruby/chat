@@ -1,3 +1,5 @@
+require 'faker'
+
 FactoryBot.define do
   factory :user do
     factory :valid_user do
@@ -8,6 +10,13 @@ FactoryBot.define do
       last_name { "Bond" }
       confirmed_at { Time.now }
       avatar { File.open("#{Rails.root}/app/assets/images/avatars/001-superhero.png") }
+    end
+    factory :random_user do
+      email { Faker::Internet.email }
+      password { Faker::Internet.password }
+      first_name { Faker::Name.first_name }
+      last_name { Faker::Name.last_name }
+      confirmed_at { Time.now }
     end
   end
 end

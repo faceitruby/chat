@@ -1,6 +1,8 @@
-.search_chats.d-flex
-  = form_with url: '#' do |form|
-    = form.text_field :chat_search, type: 'search', placeholder: 'Search contact', class: 'mr-4 w-100'
-  = link_to raw('<i class="fas fa-search fa-2x"></i>'), '#', class: 'ml-2'
-.chats_list
+.search_contacts.d-flex
+  = form_with url: persons_search_contacts_path, method: :get, id: 'contacts_search', class: 'align-self-center' do |form|
+    = form.text_field :search, type: 'search', placeholder: 'Search contact', class: 'mr-4 w-100'
+  %button.btn.text-primary.no_focus{form: 'contacts_search', type: 'submit' }
+    %i.fas.fa-search.fa-2x
+#contact_search_result
+.chats_list.bg-white
   %p contacts list
