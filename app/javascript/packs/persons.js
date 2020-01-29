@@ -8,7 +8,7 @@ $(document).on('turbolinks:load', function() {
 });
 
 function contactSearch(event) {
-    if (detail[0].found_users && event.detail[0].search) {
+    if (event.detail[0].found_users && event.detail[0].search) {
         const users = event.detail[0].found_users;
         const search = event.detail[0].search;
         const result_element = document.getElementById('contact_search_result');
