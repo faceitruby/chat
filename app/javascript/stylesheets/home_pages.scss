@@ -27,3 +27,7 @@ div.full_height {
   overflow: auto;
   max-height: 30vh;
 }
+.btn.no_focus:focus {
+  outline: none;
+  box-shadow: none;
+}

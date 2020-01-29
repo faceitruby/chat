@@ -2,7 +2,7 @@ class PersonsController < ApplicationController
   def profile
   end
   def search_contacts
-    return unless params['search']
+    return head 422 if params['search'].blank?
 
     # gets finded as [ ['first_name1', 'last_name1'], ['first_name2', 'last_name2'] ]
     finded = User.where('lower(first_name) LIKE :search or lower(last_name) LIKE :search',
