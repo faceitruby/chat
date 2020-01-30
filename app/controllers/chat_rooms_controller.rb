@@ -4,20 +4,16 @@ class ChatRoomsController < ApplicationController
   before_action :chat_list, only: %i[show index]
 
   def show
-    @chat_members = @chat_room.chat_members
-    @chat_messages = @chat_room.messages.order('created_at ASC')
+    @chat_members = @chat_room.chat_members.to_a
+    @chat_messages = @chat_room.messages.order('created_at ASC').to_a
   end
 
   def index
-    @chat_members = ChatMember.where(chat_room: @chat_room)
-  end
-
-  def new
-    @chat_room = ChatRoom.new
+    @chat_members = ChatMember.where(chat_room: @chat_room).to_a
   end
 
   def create
-    return unless user_signed_in?
+    return head 401 unless user_signed_in?
 
     chat_room = ChatRoom.create(chat_room_params)
     chat_room.chat_members.create(user: current_user, member_type: 'owner')
