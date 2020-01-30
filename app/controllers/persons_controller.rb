@@ -1,5 +1,6 @@
 class PersonsController < ApplicationController
   def profile
+    @user = current_user
   end
   def search_contacts
     return head 422 if params['search'].blank?
