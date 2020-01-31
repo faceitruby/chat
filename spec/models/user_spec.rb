@@ -110,4 +110,18 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
     end
   end
+
+  context 'Associations' do
+    context 'have_and_belong_to_many to' do
+      %i[friends black_lists].each do |association|
+        it { is_expected.to have_and_belong_to_many(association) }
+      end
+    end
+
+    context 'has many' do
+      %i[chat_members].each do |association|
+        it { is_expected.to have_many(association) }
+      end
+    end
+  end
 end
