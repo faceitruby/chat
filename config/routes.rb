@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
   get 'persons/profile'
   get 'persons/search_contacts'
+  get 'persons/search_chats'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'home_pages#index'
   resources :chat_members, only: %i[create new destroy]

@@ -1,7 +1,7 @@
 FactoryBot.define do
-  :public
-
   factory :chat_room do
+    public
+
     trait :public do
       title { 'Test public chat' }
       chat_type { true }

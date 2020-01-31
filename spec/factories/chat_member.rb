@@ -1,20 +1,25 @@
 FactoryBot.define do
   factory :chat_member do
+    association :user, factory: :random_user
+    public
+
+    trait :public do
+      association :chat_room, :public
+    end
+    
+    trait :private do
+      association :chat_room, :private
+    end
+
     factory :member_owner do
-      user_id { create(:valid_user).id }
-      chat_room_id { create(:public_chat).id }
       member_type { 'owner' }
     end
 
     factory :member_moderator do
-      user_id { create(:valid_user).id }
-      chat_room_id { create(:public_chat).id }
       member_type { 'moderator' }
     end
 
     factory :member_member do
-      user_id { create(:valid_user).id }
-      chat_room_id { create(:public_chat).id }
       member_type { 'member' }
     end
   end
