@@ -2,7 +2,10 @@ class MessagesController < ApplicationController
   def create
     chat_member = ChatMember.where(user: current_user, chat_room: ChatRoom.find(params[:chat_room_id])).first
     chat_member.messages.create(message_params)
-    redirect_back(fallback_location: root_path)
+
+    ActionCable.server.broadcast 'messages',
+      message: params[:message][:message],
+      username: current_user.name
   end
 
   private

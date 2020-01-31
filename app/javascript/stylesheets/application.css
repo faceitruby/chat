@@ -13,5 +13,8 @@
  *
  */
 @import "bootstrap";
+@import "chat_members.scss";
+@import "chat_rooms.scss";
 @import "home_pages.scss";
+@import "messages.scss";
 @import "persons.scss";

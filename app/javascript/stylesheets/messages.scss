@@ -1,3 +1,18 @@
-// Place all the styles related to the Messages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.message {
+  margin: 15px 0;
+  width: fit-content;
+}
+
+.author {
+  background: gray;
+  padding: 20px 15px;
+  border-radius: 0 15px 0 0;
+}
+
+.text {
+  background: silver;
+  padding: 15px;
+  border-radius: 0 0 15px 0;
+  min-width: 200px;
+  word-break: break-word;
+}
