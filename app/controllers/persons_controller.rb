@@ -18,7 +18,7 @@ class PersonsController < ApplicationController
     return head 422 if params['search'].blank?
 
     found = ChatRoom.where('lower(title) LIKE :search and chat_type = :type',
-                           search: "%#{'Test'.downcase}%", type: true)
+                           search: "%#{params['search'].downcase}%", type: true)
                     .pluck(:id, :title)
     found.map! { |arr| arr.join(' ') }
     render json: { found: found, search: params['search'] }
