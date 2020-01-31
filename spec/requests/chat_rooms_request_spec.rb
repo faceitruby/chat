@@ -32,6 +32,8 @@ RSpec.describe ChatRoomsController, type: :routing do
           id: '1'
         )
       end
+
+      it { is_expected.to route(:get, '/chat_rooms/search_chats').to(action: :search_chats) }
     end
 
     context 'not have' do
@@ -180,6 +182,37 @@ describe ChatRoomsController, type: :controller do
         ).to eq(
           ChatRoom
         )
+      end
+    end
+  end
+
+  context 'GET /persons/search_chats' do
+    let(:send_correct_query) { get :search_chats, xhr: true, params: { search: 'text' } }
+    let(:send_wrong_query) { get :search_chats, xhr: true }
+
+    context 'with correct query' do
+      before(:each) { send_correct_query }
+      it 'return http success' do
+        expect(response).to have_http_status(:success)
+      end
+      it 'response contains json' do
+        expect(response.content_type).to include('application/json')
+      end
+      it 'response does not contain an empty body' do
+        expect(response.body).not_to be_empty
+      end
+    end
+
+    context 'with wrong query' do
+      before(:each) { send_wrong_query }
+      it 'return 422 without search parameter' do
+        expect(response).to have_http_status(422)
+      end
+      it 'response does not contain json' do
+        expect(response.content_type).not_to include('application/json')
+      end
+      it 'response contains an empty body' do
+        expect(response.body).to be_empty
       end
     end
   end
