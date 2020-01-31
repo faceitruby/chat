@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  acts_as_paranoid
   before_save :set_default_avatar
 
   # Include default devise modules. Others available are:
@@ -49,7 +50,15 @@ class User < ApplicationRecord
 
   has_many :chat_members, dependent: :destroy
 
+  # scope :can_recovery, -> { only_deleted.find(params[:email]) }
+
   def name
     first_name + ' ' + last_name
+  end
+
+  def foo
+    if User.only_deleted
+
+    end
   end
 end
