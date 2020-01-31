@@ -6,7 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-10.times do
-  FactoryBot.create(:random_user)
-end
+chats = { public: FactoryBot.create(:chat_room),
+          private: FactoryBot.create(:chat_room, :private)}
 
+chats.each do |_key, chat|
+  user = FactoryBot.create(:random_user)
+  FactoryBot.create(:member_owner, user: user, chat_room: chat)
+  3.times do
+    user = FactoryBot.create(:random_user)
+    FactoryBot.create(:member_moderator, user: user, chat_room: chat)
+  end
+  5.times do
+    user = FactoryBot.create(:random_user)
+    FactoryBot.create(:member_member, user: user, chat_room: chat)
+  end
+end
