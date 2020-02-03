@@ -2,3 +2,22 @@
   overflow-y: scroll;
   background: #d0f9ff;
 }
+
+#contact_search_result, #chat_search_result {
+  overflow: auto;
+  height: 30vh;
+}
+
+.found_record:hover {
+  background-color: #BBBBBB;
+}
+
+.chats_list {
+  overflow: auto;
+  max-height: 30vh;
+}
+
+.btn.no_focus:focus {
+  outline: none;
+  box-shadow: none;
+}

@@ -1,5 +1,5 @@
 .search_chats.d-flex
-  = form_with url: persons_search_chats_path, method: :get, id: 'chats_search', class: 'align-self-center' do |form|
+  = form_with url: chat_rooms_search_chats_path, method: :get, id: 'chats_search', class: 'align-self-center' do |form|
     = form.text_field :search, type: 'search', placeholder: 'Search chat', class: 'mr-4 w-100'
   %button.btn.text-primary.no_focus{form: 'chats_search', type: 'submit' }
     %i.fas.fa-search.fa-2x
