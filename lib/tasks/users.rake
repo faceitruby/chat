@@ -2,7 +2,7 @@ namespace :users do
   desc "deleting archived users after 3 month"
   task deleting: :environment do
     p 'Scanning DB...'
-    User.only_deleted.where("deleted_at < ?", 3.month.ago).each do |user|
+    User.where("deleted_at < ?", 3.month.ago).each do |user|
       p "Archived user #{user.name} was deleted"
       user.destroy
     end
