@@ -58,7 +58,6 @@ gem 'bootstrap'
 
 gem 'haml-rails', '~> 2.0'
 
-gem 'acts_as_paranoid', '~> 0.6.3'
 gem 'carrierwave', '~> 2.0', '>= 2.0.2'
 gem 'devise'
 gem 'omniauth-google-oauth2'

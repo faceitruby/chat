@@ -2,6 +2,7 @@ class PersonsController < ApplicationController
   def profile
     @user = current_user
   end
+
   def search_contacts
     return head 422 if params['search'].blank?
 
@@ -11,5 +12,12 @@ class PersonsController < ApplicationController
                  .pluck(:first_name, :last_name)
     finded.map! { |arr| arr.join(' ') }
     render json: { found_users: finded, search: params['search'] }
+  end
+
+  def account_recovery
+    user = current_user
+    user.deleted_at = nil
+    user.save
+    redirect_to persons_profile_path
   end
 end
