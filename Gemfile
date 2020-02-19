@@ -35,6 +35,7 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
   gem 'rspec-rails', '>= 2.0.0.beta'
   gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -62,5 +63,6 @@ gem 'carrierwave', '~> 2.0', '>= 2.0.2'
 gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'whenever', require: false
+gem 'redis'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

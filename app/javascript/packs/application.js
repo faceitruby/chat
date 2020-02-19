@@ -23,4 +23,4 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 library.add(fas);
 dom.watch();
 import "./persons"
-
+import "./chat_rooms"

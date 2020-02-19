@@ -10,9 +10,23 @@ RSpec.describe PersonsController, type: :controller do
     end
   end
 
+  describe 'routing' do
+    it { is_expected.to_not route(:get,    '/persons').to(action: :index) }
+    it { is_expected.to_not route(:post,   '/persons').to(action: :create) }
+    it { is_expected.to_not route(:get,    '/persons/new').to(action: :new) }
+    it { is_expected.to_not route(:get,    '/persons/1/edit').to(action: :edit, id: 1) }
+    it { is_expected.to_not route(:get,    '/persons/1').to(action: :show, id: 1) }
+    it { is_expected.to_not route(:patch,  '/persons/1').to(action: :update, id: 1) }
+    it { is_expected.to_not route(:put,    '/persons/1').to(action: :update, id: 1) }
+    it { is_expected.to_not route(:delete, '/persons/1').to(action: :destroy, id: 1) }
+
+    it { is_expected.to route(:get,   '/persons/profile').to(action: :profile) }
+    it { is_expected.to route(:get,   '/persons/search_contacts').to(action: :search_contacts) }
+  end
+
   describe 'GET /persons/search_contacts' do
-    let(:send_correct_query) { get '/persons/search_contacts', xhr: true, params: { search: 'text' } }
-    let(:send_wrong_query) { get '/persons/search_contacts', xhr: true }
+    let(:send_correct_query) { get :search_contacts, xhr: true, params: { search: 'text' } }
+    let(:send_wrong_query) { get :search_contacts, xhr: true }
 
     context 'with correct query' do
       before(:each) { send_correct_query }

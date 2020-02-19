@@ -1,12 +1,14 @@
 FactoryBot.define do
   factory :chat_room do
-    factory :public_chat do
-      title { 'Test chat' }
+    public
+
+    trait :public do
+      title { 'Test public chat' }
       chat_type { true }
     end
 
-    factory :private_chat do
-      title { 'Test chat' }
+    trait :private do
+      title { 'Test private chat' }
       chat_type { false }
     end
   end

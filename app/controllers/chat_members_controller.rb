@@ -11,6 +11,6 @@ class ChatMembersController < ApplicationController
   private
 
   def chat_members_params
-    params.require(:chat_member).permit(:chat_room, :member_type)
+    params.require(:chat_member).permit(:chat_room_id, :member_type)
   end
 end

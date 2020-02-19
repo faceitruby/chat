@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_01_30_091901) do
+=======
+ActiveRecord::Schema.define(version: 2020_01_31_154524) do
+>>>>>>> development
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "black_lists", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "black_list_id"
+  end
 
   create_table "chat_members", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -30,6 +39,11 @@ ActiveRecord::Schema.define(version: 2020_01_30_091901) do
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "friends", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
   end
 
   create_table "messages", force: :cascade do |t|

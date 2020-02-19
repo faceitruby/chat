@@ -49,6 +49,13 @@ class User < ApplicationRecord
 
   has_many :chat_members, dependent: :destroy
 
+  has_and_belongs_to_many :friends, class_name: 'User',
+                                    join_table: 'friends',
+                                    association_foreign_key: 'friend_id'
+  has_and_belongs_to_many :black_lists, class_name: 'User',
+                                        join_table: 'black_lists',
+                                        association_foreign_key: 'black_list_id'
+
   def name
     first_name + ' ' + last_name
   end
