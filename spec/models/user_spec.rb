@@ -111,7 +111,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-<<<<<<< HEAD
   describe 'soft_delete method' do
     let!(:user) {create(:valid_user)}
     it 'will change deleted_at field' do
@@ -124,7 +123,8 @@ RSpec.describe User, type: :model do
     it 'will change deleted_at field' do
       user.soft_delete
       expect{user.account_recover}.to change{User.last.deleted_at}.to(nil)
-=======
+    end
+  end
   context 'Associations' do
     context 'have_and_belong_to_many to' do
       %i[friends black_lists].each do |association|
@@ -136,7 +136,6 @@ RSpec.describe User, type: :model do
       %i[chat_members].each do |association|
         it { is_expected.to have_many(association) }
       end
->>>>>>> development
     end
   end
 end
