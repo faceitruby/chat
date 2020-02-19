@@ -16,8 +16,7 @@ class PersonsController < ApplicationController
 
   def account_recovery
     user = current_user
-    user.deleted_at = nil
-    user.save
+    user.account_recover
     redirect_to persons_profile_path
   end
 end

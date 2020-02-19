@@ -110,4 +110,19 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
     end
   end
+
+  describe 'soft_delete method' do
+    let!(:user) {create(:valid_user)}
+    it 'will change deleted_at field' do
+      expect{user.soft_delete}.to change{User.last.deleted_at}.from(nil)
+    end
+  end
+
+  describe 'account_recovery method' do
+    let!(:user) {create(:valid_user)}
+    it 'will change deleted_at field' do
+      user.soft_delete
+      expect{user.account_recover}.to change{User.last.deleted_at}.to(nil)
+    end
+  end
 end

@@ -10,6 +10,7 @@ FactoryBot.define do
       last_name { "Bond" }
       confirmed_at { Time.now }
       avatar { File.open("#{Rails.root}/app/assets/images/avatars/001-superhero.png") }
+      deleted_at { nil }
     end
     factory :random_user do
       email { Faker::Internet.email }

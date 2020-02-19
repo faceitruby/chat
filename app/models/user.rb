@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  # acts_as_paranoid
   before_save :set_default_avatar
 
   # Include default devise modules. Others available are:
@@ -54,4 +53,11 @@ class User < ApplicationRecord
     first_name + ' ' + last_name
   end
 
+  def soft_delete
+    update_attribute(:deleted_at, Time.current)
+  end
+
+  def account_recover
+    update_attribute(:deleted_at, nil)
+  end
 end
